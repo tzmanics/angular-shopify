@@ -1,0 +1,36 @@
+<main class="cart-page">
+  <article class="cart-page-content">
+    <h1>Your Cart</h1>
+    <div *ngIf="cart$ | async as cart">
+      <div *ngIf="cart.lines && cart.lines.edges.length > 0; else emptyCart">
+        <app-cart-table [cartItems]="cart.lines.edges"></app-cart-table>
+        <section class="cart-total">
+          <div class="cart-total-content">
+            <div class="cart-total-column">
+              <p>
+                <strong>Subtotal:</strong>
+              </p>
+              <p>Shipping:</p>
+              <p>Tax:</p>
+              <p>Total:</p>
+            </div>
+            <div class="cart-total-column">
+              <p>
+                <strong>{{
+                  cart.estimatedCost.subtotalAmount.amount | currency
+                }}</strong>
+              </p>
+              <p>Free Shipping</p>
+              <p>{{ cart.estimatedCost.totalTaxAmount.amount | currency }}</p>
+              <p>{{ cart.estimatedCost.totalAmount.amount | currency }}</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <p class="cart-page-message">Your cart is empty, fill it up!</p>
+      <a routerLink="/" class="cart-page-button is-dark"> Back to Products </a>
+    </ng-template>
+  </article>
+</main>

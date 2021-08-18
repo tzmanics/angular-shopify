@@ -1,0 +1,63 @@
+<div class="product-page">
+  <div class="product-page-content">
+    <div class="product-page-image">
+      <img [src]="product?.image" />
+    </div>
+    <div class="product-copy">
+      <h1>{{ product?.title }}</h1>
+      <p>
+        {{ product?.description }}
+      </p>
+      <form>
+        <div
+          class="product-page-price-list"
+          *ngIf="variants && variants.length > 1; else isSolo"
+        >
+          <div *ngFor="let variant of variants" class="product-page-price">
+            <input
+              [id]="variant.node.id"
+              type="radio"
+              name="merchandiseId"
+              [value]="variant.node.id"
+              [(ngModel)]="selectedProductId"
+            />
+            <label>
+              {{ variant.node.title }} -
+              {{ variant.node.priceV2.amount | currency }}
+              (Only {{ variant.node.quantityAvailable }} left)
+            </label>
+          </div>
+        </div>
+        <ng-template #isSolo>
+          <div class="product-page-price is-solo">
+            {{ variants![0].node.priceV2.amount | currency }}
+            <span v-else-if="productVariants[0].node.quantityAvailable > 0">
+              (Only
+              {{ variants![0].node.quantityAvailable }} left)
+            </span>
+          </div>
+        </ng-template>
+        <div class="add-to-cart">
+          <input
+            type="number"
+            name="quantity"
+            [(ngModel)]="selectedQuantity"
+            value="1"
+            class="product-page-quantity-input"
+          />
+          <input type="hidden" name="cartId" value="" />
+          <button
+            (click)="
+              addToCart({
+                itemId: selectedProductId,
+                quantity: selectedQuantity
+              })
+            "
+          >
+            Add to Cart
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

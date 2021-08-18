@@ -1,0 +1,28 @@
+<div class="home-page">
+  <div
+    class="product-grid"
+    *ngIf="productList$ | async as productList; else loadingBlock"
+  >
+    <div
+      class="product-card"
+      *ngFor="let product of productList"
+      routerLink="/product/{{ product.handle }}"
+    >
+      <div class="product-item">
+        <div class="product-card-frame">
+          <img [src]="product.image" />
+        </div>
+        <div class="product-card-text">
+          <h3 class="product-card-title">{{ product.title }}</h3>
+          <p class="product-description">
+            {{ product.description?.substring(0, 60) }}...
+          </p>
+          <button>View Item</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loadingBlock>
+    <p>Loading products...</p>
+  </ng-template>
+</div>

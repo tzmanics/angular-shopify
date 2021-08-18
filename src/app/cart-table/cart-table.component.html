@@ -1,0 +1,37 @@
+<table class="cart-table">
+  <thead>
+    <th class="cart-table-heading">Item</th>
+    <th class="cart-table-heading">Price</th>
+    <th class="cart-table-heading">Quantity</th>
+    <th class="cart-table-heading">Total</th>
+    <th class="cart-table-heading">Actions</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of cartItems" class="cart-table-row">
+      <td class="cart-table-cell">
+        <a routerLink="`/products/${item.node.handle}`">
+          {{ item.node.merchandise.product.title }}
+          {{
+            item.node.merchandise.title === "Default Title"
+              ? ""
+              : " (" + item.node.merchandise.title + ")"
+          }}</a
+        >
+      </td>
+      <td class="cart-table-cell">
+        {{ item.node.merchandise.priceV2.amount | currency }}
+      </td>
+      <td class="cart-table-cell">
+        {{ item.node.quantity }}
+      </td>
+      <td class="cart-table-cell">
+        {{
+          item.node.merchandise.priceV2.amount * item.node.quantity | currency
+        }}
+      </td>
+      <td class="cart-table-cell">
+        <button (click)="removeFromCart(item.node.id)">Remove Item</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
