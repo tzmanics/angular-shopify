@@ -3,7 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4ca9ef0e-e6b5-43e3-90ce-c5296ab74bba/deploy-status)](https://app.netlify.com/sites/angular-shopify/deploys)
 
 
-An E-Commerce example built with Angular, Shopify & Netlify Functions!
+An E-Commerce example built with Angular, Shopify & Netlify Functions! You can learn more about this project [by cheking out this blog post](https://ntl.fyi/3zjDvvk).
 
 
 > [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/tzmanics/angular-shopify&utm_source=blog&utm_medium=ng-shopify-tzm&utm_campaign=devex)
